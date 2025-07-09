@@ -1,0 +1,166 @@
+---
+import { Github, Linkedin, Mail, ExternalLink, Package } from "lucide-astro";
+import Button from "./Button.astro";
+
+const projects = [
+  {
+    title: "GymNotes",
+    description:
+      "An offline-first web app to track your workouts. Built with Vue.js and IndexedDB via Dexie.js, with cloud backup powered by a Go backend.",
+    tech: ["Vue.js", "IndexedDB", "Go"],
+    links: [{ type: "website", icon: ExternalLink, label: "Website", href: "https://gymnotes.co.uk" }],
+  },
+  {
+    title: "Auto Typer",
+    description:
+      "An npm package providing an easy-to-use, highly customizable autotyper component for Vue3 applications.",
+    tech: ["Vue3", "TypeScript", "npm"],
+    links: [
+      { type: "github", icon: Github, label: "GitHub", href: "https://github.com/Nathanjms/auto-typer-vue3" },
+      { type: "npm", icon: Package, label: "npm", href: "https://www.npmjs.com/package/auto-typer-vue3" },
+    ],
+  },
+  {
+    title: "Vue3 Tailwind Modal",
+    description:
+      "A flexible modal component for Vue3 applications, styled with Tailwind CSS and supporting both dark and light modes.",
+    tech: ["Vue3", "Tailwind CSS", "TypeScript"],
+    links: [
+      { type: "github", icon: Github, label: "GitHub", href: "https://github.com/Nathanjms/vue3-tailwind-modal" },
+      { type: "npm", icon: Package, label: "npm", href: "https://www.npmjs.com/package/vue3-tailwind-modal" },
+    ],
+  },
+  {
+    title: "NJ Script - Oh My Zsh",
+    description:
+      "An automated installation script for Oh My Zsh with powerlevel10k, zsh-autosuggestions, and zsh-syntax-highlighting for Linux and Mac.",
+    tech: ["Shell Script", "Zsh", "Linux", "macOS"],
+    links: [{ type: "github", icon: Github, label: "GitHub", href: "https://github.com/Nathanjms/ohmyzsh-nj-script" }],
+  },
+  {
+    title: "JamesFest 2022",
+    description:
+      "A wedding information website built with React and Next.js, featuring a photo gallery with authentication system.",
+    tech: ["React", "Next.js", "Authentication"],
+    links: [
+      { type: "website", icon: ExternalLink, label: "Website", href: "https://jamesfest2022.co.uk" },
+      { type: "github", icon: Github, label: "GitHub", href: "https://github.com/Nathanjms/jamesfest2022" },
+    ],
+  },
+];
+---
+
+<div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+  <!-- Header -->
+  <header class="sticky top-0 z-10 bg-white/80 backdrop-blur-sm border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex gap-3">
+        <Button
+          variant="icon"
+          class="rounded-full hover:bg-slate-100 bg-transparent"
+          href="https://github.com/nathanjms"
+          target="_blank"
+        >
+          <Github class="h-4 w-4" />
+        </Button>
+        <Button
+          variant="icon"
+          class="rounded-full hover:bg-slate-100 bg-transparent"
+          href="https://www.linkedin.com/in/nathan-jms/"
+          target="_blank"
+        >
+          <Linkedin class="h-4 w-4" />
+        </Button>
+        <Button
+          variant="icon"
+          class="rounded-full hover:bg-slate-100 bg-transparent"
+          href="mailto:nathan@nathanjms.co.uk"
+        >
+          <Mail class="h-4 w-4" />
+        </Button>
+      </div>
+      <div class="text-sm font-medium text-slate-600">Nathan James</div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6 py-12">
+    <!-- Hero -->
+    <section class="text-center mb-20">
+      <h1 class="text-5xl font-bold text-slate-900 mb-4">Nathan James</h1>
+      <p class="text-xl text-slate-600 mb-6">Software Developer</p>
+      <div class="max-w-2xl mx-auto">
+        <p class="text-lg text-slate-700 leading-relaxed mb-8">
+          Welcome to my website! I build modern web applications with a focus on clean code and exceptional user
+          experiences. I work with Laravel and VueJS day-to-day, but I'm always eager to learn new technologies.
+        </p>
+        <div class="flex justify-center gap-4">
+          <Button href="mailto:nathan@nathanjms.co.uk">
+            <Mail class="h-4 w-4 mr-2" />
+            Get in touch
+          </Button>
+          <Button variant="outline" href="https://github.com/nathanjms" target="_blank">
+            <Github class="h-4 w-4 mr-2" />
+            View GitHub
+          </Button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section>
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">Featured Projects</h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+          A collection of projects I've built, ranging from web applications to developer tools.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          projects.map((project) => (
+            <div class="group hover:shadow-lg transition-all duration-300 shadow rounded-2xl border-blue-200 hover:border-blue-100">
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  {project.title}
+                </h3>
+                <p class="text-slate-600 mb-4 leading-relaxed">{project.description}</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {project.tech.map((tech) => (
+                    <span class="px-2 py-1 text-xs font-medium bg-slate-200 text-slate-700 rounded-full">{tech}</span>
+                  ))}
+                </div>
+                <div class="flex gap-2">
+                  {project.links.map((link) => (
+                    <Button variant="outline" class="text-xs" href={link.href}>
+                      <link.icon class="h-3 w-3 mr-1" />
+                      {link.label}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="mt-20 text-center">
+      <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-200">
+        <h3 class="text-2xl font-semibold text-slate-900 mb-4">Get in Touch</h3>
+        <p class="text-slate-600 mb-6 max-w-md mx-auto">To get in touch, please drop me an email.</p>
+        <Button>
+          <Mail class="h-4 w-4 mr-2" />
+          nathan@nathanjms.co.uk
+        </Button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 mt-20">
+    <div class="max-w-6xl mx-auto px-6 py-8 text-center text-slate-500">
+      <p>&copy; 2025 Nathan James</p>
+    </div>
+  </footer>
+</div>
