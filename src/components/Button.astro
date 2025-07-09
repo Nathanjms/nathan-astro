@@ -17,7 +17,7 @@ const sizes = {
   icon: "p-2 w-9 h-9",
 };
 
-const classes = `${baseStyles} ${variants[variant] || variants.default} ${sizes[size] || sizes.default} ${extraClass}`;
+const classes = `${baseStyles} ${variants[variant as keyof typeof variants] || variants.default} ${sizes[size as keyof typeof sizes] || sizes.default} ${extraClass}`;
 ---
 
 {
