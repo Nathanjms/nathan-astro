@@ -1,5 +1,7 @@
 ---
 import { Github, Linkedin, Mail, ExternalLink, Package } from "lucide-astro";
+import { AutoTyperVue } from "auto-typer-vue3";
+import "auto-typer-vue3/dist/style.css";
 import Button from "./Button.astro";
 
 const projects = [
@@ -9,16 +11,6 @@ const projects = [
       "An offline-first web app to track your workouts. Built with Vue.js and IndexedDB via Dexie.js, with cloud backup powered by a Go backend.",
     tech: ["Vue.js", "IndexedDB", "Go"],
     links: [{ type: "website", icon: ExternalLink, label: "Website", href: "https://gymnotes.co.uk" }],
-  },
-  {
-    title: "Auto Typer",
-    description:
-      "An npm package providing an easy-to-use, highly customizable autotyper component for Vue3 applications.",
-    tech: ["Vue3", "TypeScript", "npm"],
-    links: [
-      { type: "github", icon: Github, label: "GitHub", href: "https://github.com/Nathanjms/auto-typer-vue3" },
-      { type: "npm", icon: Package, label: "npm", href: "https://www.npmjs.com/package/auto-typer-vue3" },
-    ],
   },
   {
     title: "Vue3 Tailwind Modal",
@@ -146,7 +138,7 @@ const projects = [
                 </div>
                 <div class="flex gap-2">
                   {project.links.map((link) => (
-                    <Button variant="outline" class="text-xs" href={link.href}>
+                    <Button variant="outline" class="text-xs" href={link.href} target="_blank">
                       <link.icon class="h-3 w-3 mr-1" />
                       {link.label}
                     </Button>
@@ -156,26 +148,66 @@ const projects = [
             </div>
           ))
         }
+        <div
+          class="group hover:shadow-lg transition-all duration-300 bg-white rounded-2xl border-blue-200 hover:border-blue-100"
+        >
+          <div class="p-6">
+            <AutoTyperVue
+              componentTag="h3"
+              class="text-xl font-semibold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors"
+              text="Auto Typer Vue3"
+              :typingDelay="300"
+              client:load
+            />
+            <p class="text-slate-600 mb-4 leading-relaxed">
+              An npm package providing an easy-to-use, highly customizable autotyper component for Vue3 applications.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              {
+                ["Vue", "TypeScript", "npm"].map((tech) => (
+                  <span class="px-2 py-1 text-xs font-medium bg-slate-200 text-slate-700 rounded-full">{tech}</span>
+                ))
+              }
+            </div>
+            <div class="flex gap-2">
+              <Button
+                variant="outline"
+                class="text-xs"
+                href="https://github.com/nathanjms/auto-typer-vue3"
+                target="_blank"
+              >
+                <Github class="h-3 w-3 mr-1" />
+                GitHub
+              </Button>
+              <Button
+                variant="outline"
+                class="text-xs"
+                href="https://www.npmjs.com/package/auto-typer-vue3"
+                target="_blank"
+              >
+                <Package class="h-3 w-3 mr-1" />
+                npm
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Contact -->
     <section class="mt-20 text-center">
-      <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-200">
-        <h3 class="text-2xl font-semibold text-slate-900 mb-4">Get in Touch</h3>
-        <p class="text-slate-600 mb-6 max-w-md mx-auto">To get in touch, please drop me an email.</p>
-        <Button>
-          <Mail class="h-4 w-4 mr-2" />
-          nathan@nathanjms.co.uk
-        </Button>
+      <div
+        class="hover:shadow-lg transition-all duration-300 bg-white rounded-2xl border-blue-200 hover:border-blue-100"
+      >
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-slate-900 mb-4">Get in Touch</h3>
+          <p class="text-slate-600 mb-6 max-w-md mx-auto">To get in touch, please drop me an email.</p>
+          <Button>
+            <Mail class="h-4 w-4 mr-2" />
+            nathan@nathanjms.co.uk
+          </Button>
+        </div>
       </div>
     </section>
   </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-slate-200 mt-20">
-    <div class="max-w-6xl mx-auto px-6 py-8 text-center text-slate-500">
-      <p>&copy; 2025 Nathan James</p>
-    </div>
-  </footer>
 </div>
