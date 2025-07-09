@@ -47,6 +47,21 @@ const projects = [
       { type: "github", icon: Github, label: "GitHub", href: "https://github.com/Nathanjms/jamesfest2022" },
     ],
   },
+  {
+    title: "Log to Table (VS Code Extension)",
+    description:
+      "A VS Code extension that allows you to convert your laravel.log files (and more) to a human-readable table, with filtering and searching.",
+    tech: ["VS Code", "TypeScript", "Node.js"],
+    links: [
+      { type: "github", icon: Github, label: "GitHub", href: "https://github.com/Nathanjms/log-to-table-extension" },
+      {
+        type: "marketplace",
+        icon: ExternalLink,
+        label: "Marketplace",
+        href: "https://marketplace.visualstudio.com/items?itemName=nathanjames.laravel-log-viewer-table",
+      },
+    ],
+  },
 ];
 ---
 
@@ -118,7 +133,7 @@ const projects = [
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {
           projects.map((project) => (
-            <div class="group hover:shadow-lg transition-all duration-300 shadow rounded-2xl border-blue-200 hover:border-blue-100">
+            <div class="group hover:shadow-lg transition-all duration-300 bg-white rounded-2xl border-blue-200 hover:border-blue-100">
               <div class="p-6">
                 <h3 class="text-xl font-semibold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
                   {project.title}
